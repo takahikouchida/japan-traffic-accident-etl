@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgis/postgis:15-3.4
+    container_name: jtae-postgis
+    environment:
+      POSTGRES_DB: ${PGDATABASE:-traffic}
+      POSTGRES_USER: ${PGUSER:-postgres}
+      POSTGRES_PASSWORD: ${PGPASSWORD:-postgres}
+    ports:
+      - "${PGPORT:-5432}:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PGUSER:-postgres} -d ${PGDATABASE:-traffic}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  etl:
+    build:
+      context: .
+      dockerfile: docker/etl.Dockerfile
+    container_name: jtae-etl
+    env_file: .env
+    working_dir: /work
+    volumes:
+      - ./:/work
+    depends_on:
+      db:
+        condition: service_healthy
+    # 対話で使いたい時
+    tty: true
+
+volumes:
+  dbdata:

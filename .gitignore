@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv*/
+env/
+env*/
+*.egg-info/
+
+# Env files
+.env
+*.env
+
+# Data outputs
+data/output/
+data/source/*.zip
+*.mbtiles
+*.pmtiles
+*.sqlite
+*.geojson
+*.geojsonl
+*.gpkg-journal
+*.csv~
+
+# Logs
+*.log
+logs/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+dbdata/
+docker/*.pid
