@@ -1,6 +1,6 @@
 # japan-traffic-accident-etl
 
-**目的**: 交通事故のCSVを **PostGIS（Docker）** に「確実に」取り込む最小仕組み。  
+**目的**: 交通事故のCSVを **PostGIS（Docker）** に「確実に」取り込む。  
 
 ## クイックスタート
 
